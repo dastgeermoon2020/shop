@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cabin } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Header1 from "@/components/Header1";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import { StoreProvider } from "@/store/StoreProvider";
@@ -30,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${cabin.className}  h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <StoreProvider>
-          <Header />
+          <Header1 />
           {children}
         </StoreProvider>
       </body>

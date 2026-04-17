@@ -41,13 +41,15 @@ const Header = () => {
           </div>
         ) : null}
 
-        <Link href="/cart" className="relative flex flex-cols gap-3">
-          <ShoppingBag className="h-5 w-5" />
-          <Badge className="w-5 h-5 absolute bg-red-500 text-xs text-white -top-3 left-3">
-            {totalquantity ? totalquantity : 0}
-          </Badge>
-          {/* <span className="pl-4">Cart</span> */}
-        </Link>
+        <div className="">
+          <Link href="/cart" className="relative flex flex-cols gap-3">
+            <ShoppingBag className="h-5 w-5" />
+            <Badge className="w-5 h-5 absolute bg-red-500 text-xs text-white -top-3 left-3">
+              {totalquantity ? totalquantity : 0}
+            </Badge>
+            {/* <span className="pl-4">Cart</span> */}
+          </Link>
+        </div>
       </div>
     </header>
   );
