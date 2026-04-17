@@ -23,7 +23,7 @@ const Products = () => {
   };
   return (
     <div className="py-5 xs:px-4 lg:px-20">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+      <div className="grid grid-cols-1 px-2 lg:grid-cols-4 gap-6 w-full">
         {products.map((product) => (
           <div
             key={product.id}
