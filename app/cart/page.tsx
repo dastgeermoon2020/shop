@@ -32,11 +32,11 @@ const page = () => {
       </div>
     );
   return (
-    <div className=" py-8 max-w-full px-20 ">
+    <div className=" py-8 max-w-full md:px-20 px-2 ">
       <h1 className="text-3xl font-bold tracking-tight">Shoping Cart</h1>
       <p className="text-paly-sky">{items.length} items in the cart</p>
 
-      <div className="mt-8 grid grid-cols-3 gap-8">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="border p-3 border-athens-gray rounded-md col-span-2">
           <div className="flex flex-col gap-3">
             {items.map(({ product, quantity }) => (
@@ -52,7 +52,7 @@ const page = () => {
                   className="w-full flex-1 object-cover rounded-md"
                 ></Image>
                 <div className="flex-8">
-                  <h3 className="font-bold text-xl leading-tight">
+                  <h3 className="font-bold text-md md:text-xl leading-tight">
                     {product.name}
                   </h3>
                   <p className="text-sm text-paly-sky mb-2">
