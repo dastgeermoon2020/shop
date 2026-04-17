@@ -34,8 +34,8 @@ const Products = () => {
                 <Image
                   src={product.image}
                   alt={product.name}
-                  width={100}
-                  height={100}
+                  width={900}
+                  height={900}
                   className="w-full h-full object-cover"
                 ></Image>
               </Link>
