@@ -27,7 +27,7 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="rounded-lg shadow-sm border border-santas-gray overflow-hidden cursor-pointer "
+            className="rounded-lg border-0.5 shadow-sm border-santas-gray overflow-hidden cursor-pointer "
           >
             <div className="aspect-square">
               <Link href={`product/${product.id}`}>
