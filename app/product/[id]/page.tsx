@@ -43,13 +43,13 @@ function page() {
 
   return (
     <>
-      <div className="py-8 px-20">
+      <div className="py-8 md:px-20  px-2">
         <Link href="/" className="flex items-center  gap-2 font-medium text-sm">
           <ArrowLeft className="h-4 w-4" /> Back
         </Link>
 
-        <div className="flex gap-8 mt-6 w-full">
-          <div className="overflow-hidden rounded-2xl flex-1 h-146">
+        <div className="md:flex block gap-8 mt-6 w-full">
+          <div className="overflow-hidden rounded-2xl flex-1 h-75 md:h-146">
             <Image
               src={product.image}
               width={400}
@@ -60,7 +60,7 @@ function page() {
           </div>
 
           {/* right side */}
-          <div className="flex gap-2 flex-col flex-1">
+          <div className="flex gap-2 pt-3 md:pt-0 flex-col flex-1">
             <p className="text-sm font-medium uppercase tracking-wider text-red-500">
               {product.category}
             </p>

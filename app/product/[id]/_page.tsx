@@ -2,99 +2,103 @@
 import QuantityButton from "@/components/QuantityButton";
 import { addToCart } from "@/store/cartSlice";
 import { useAppSelector } from "@/store/hooks";
-import { IProduct } from "@/types/product";
+// import { IProduct } from "@/types/product";
 import { findProductById } from "@/utils/product";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React from "react";
+import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
-const ProductDetails = () => {
+function page() {
+  const router = useRouter();
   const dispatch = useDispatch();
-  const handleAddToCart = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    product: IProduct,
-  ) => {
-    e.stopPropagation();
-    dispatch(addToCart({ product }));
-  };
   const { id } = useParams();
   const product = findProductById(id as string);
 
-  const { items, products } = useAppSelector((state) => state.cart);
+  const items = useAppSelector((state) => state.cart.items);
 
-  if (!product) {
+  const handleAddToCart = () => {
+    dispatch(addToCart({ product }));
+  };
+
+  if (!product)
     return (
-      <div className="flex flex-col justify-center items-center py-16">
-        <h2 className="text-3xl font-bold">Product not found</h2>
-        <p className="text-lg py-3">
-          product you are looking for is not available
-        </p>
-
-        <Link
-          className="text-sm font-medium rounded-md bg-red-500 text-white py-2 px-4"
-          href="/"
-        >
-          Go to Shop
-        </Link>
-      </div>
+      <>
+        <div className="flex flex-col items-center justify-center py-6">
+          <h1 className="text-2xl font-bold">Product Not Found</h1>
+          <p className="text-paly-sky ">
+            The item you are looking for does not exist
+          </p>
+          <Link
+            href="/"
+            className="text-sm font-medium py-2 rounded-md px-4 bg-red-500 text-white mt-6"
+          >
+            Back to Products
+          </Link>
+        </div>
+      </>
     );
-  }
 
   return (
-    <div className="px-20 my-6">
-      <div className="flex gap-2 pb-3">
-        <Link href="/" className="flex">
-          <ArrowLeft /> Back
+    <>
+      <div className="py-8 px-20">
+        <Link href="/" className="flex items-center  gap-2 font-medium text-sm">
+          <ArrowLeft className="h-4 w-4" /> Back
         </Link>
-      </div>
 
-      <div className="flex">
-        <Image
-          src={product.image}
-          width={400}
-          height={400}
-          alt={product.name}
-          className=" h-full xs:w-full lg:w-1/2 rounded-xl"
-        />
-        <div className="px-5 lg:w-full">
-          <p className="text-red-500 font-semibold uppercase pb-2">
-            {product.category}
-          </p>
-          <h1 className="text-2xl font-bold ">{product.name}</h1>
-          <h3 className="text-santas-gray font-bold text-3xl py-4">
-            $ {product.price}
-          </h3>
-          <p>{product.description}</p>
+        <div className="flex gap-8 mt-6 w-full">
+          <div className="overflow-hidden rounded-2xl flex-1 h-146">
+            <Image
+              src={product.image}
+              width={400}
+              height={400}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-          <div className="flex gap-3 py-4 items-center">
-            {/* button and */}
-            {items.some((item) => item.product.id === product.id) ? (
-              <QuantityButton product={product} />
-            ) : (
+          {/* right side */}
+          <div className="flex gap-2 flex-col flex-1">
+            <p className="text-sm font-medium uppercase tracking-wider text-red-500">
+              {product.category}
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight">
+              {product.name}
+            </h1>
+            <p className="mt-4 text-3xl text-shark font-bold">
+              $ {product.price}
+            </p>
+            <p className="mt-5 leading-relaxed text-paly-sky">
+              {product.description}
+            </p>
+
+            <div className="flex gap-4 mt-6">
+              {/* button and */}
+              {items.some((item) => item.product.id === product.id) ? (
+                <QuantityButton product={product} />
+              ) : (
+                <button
+                  className="font-medium flex-3 text-sm border border-color-athens-gray py-2.5 cursor-pointer rounded-md flex items-center justify-center gap-2 shadow-xs  bg-red-500 text-white"
+                  onClick={handleAddToCart}
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  Add to Cart
+                </button>
+              )}
               <button
-                className="font-medium text-sm px-3 bg-athens-gray border border-athens-gray py-2 cursor-pointer rounded-md flex items-center justify-center gap-2 "
-                onClick={(e) => handleAddToCart(e, product)}
+                className="font-medium flex-1 text-sm cursor-pointer border border-athens-gray rounded-md shadow-xs"
+                onClick={() => router.push("/cart")}
               >
-                <ShoppingCart className="h-5 w-5" />
-                Add to Cart
+                View Cart
               </button>
-            )}
-            <Link
-              href="/cart"
-              className="font-medium text-sm px-5 text-white bg-red-500 border border-athens-gray py-2 cursor-pointer rounded-md "
-            >
-              View Cart
-            </Link>
-
-            {/* bbutt */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
-};
+}
 
-export default ProductDetails;
+export default page;
