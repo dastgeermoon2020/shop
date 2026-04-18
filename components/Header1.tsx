@@ -52,7 +52,7 @@ const Header1 = () => {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-santas-gray" />
               <input
-                className="outline-none md:w-80 w-50 border border-athens-gray py-2 pl-8 rounded-md text-sm"
+                className="outline-none md:w-80 w-40 border border-athens-gray py-2 pl-8 rounded-md text-sm"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
